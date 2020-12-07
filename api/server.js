@@ -8,7 +8,7 @@ const usersRouter = require("../users/users-router.js");
 const server = express();
 
 server.use(helmet());
-server.user(express.json());
+server.use(express.json());
 server.use(cors());
 
 server.use("/api/auth", authRouter);
