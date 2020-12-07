@@ -27,7 +27,7 @@ router.delete(
   }
 );
 
-router.post("/", restricted, checkRole("admin"), (req, res) => {
+router.post("/", restricted, checkRole(1), (req, res) => {
   try {
     res.status(501).json({ message: "not implemented" });
   } catch (err) {
