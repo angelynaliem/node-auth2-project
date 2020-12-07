@@ -1,10 +1,15 @@
 const jwt = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
 
+// const secret = require("../config/secrets.js");
+
 module.exports = (req, res, next) => {
+  // const authHeader = req.headers.authHeader || "";
+  // const token = authHeader.split(" ")[1];
+
   try {
     const token = req.headers.authorization
-      ? req.headers.authorization.split(" ")[1]
+      ? req.headers.authorization.split(" ")[1] //1 is index 1 which is the token after split because there is a space between Bearer and the value of the token
       : "";
 
     if (token) {
