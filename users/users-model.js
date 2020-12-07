@@ -10,7 +10,7 @@ module.exports = {
 function find() {
   return db("users as u")
     .join("roles as r", "u.department", "r.id")
-    .select("u.id", "u.username", "r.name as departmentn");
+    .select("u.id", "u.username", "r.name as department");
 }
 
 function findBy(filter) {
