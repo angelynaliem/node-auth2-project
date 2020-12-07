@@ -10,13 +10,13 @@ module.exports = {
 function find() {
   return db("users as u")
     .join("roles as r", "u.department", "r.id")
-    .select("u.id", "u.username", "r.name as rolename");
+    .select("u.id", "u.username", "r.name as departmentn");
 }
 
 function findBy(filter) {
   return db("users as u")
     .join("roles as r", "u.department", "r.id")
-    .select("u.id", "u.username", "r.name as departmentname", "u.password")
+    .select("u.id", "u.username", "r.name as department", "u.password")
     .where(filter)
     .orderBy("u.id");
 }

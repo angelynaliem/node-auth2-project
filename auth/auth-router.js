@@ -7,7 +7,7 @@ const router = require("express").Router();
 const Users = require("../users/users-model.js");
 const { isValid } = require("../users/users-service.js");
 
-router.post("/register", (req, res, next) => {
+router.post("/register", async (req, res, next) => {
   const credentials = req.body;
 
   try {
@@ -18,9 +18,7 @@ router.post("/register", (req, res, next) => {
 
       credentials.password = hash;
 
-      const user = await;
-
-      Users.add(credentials);
+      const user = await Users.add(credentials);
       const token = generateToken(user);
       res.status(201).json({ data: user, token });
     } else {
