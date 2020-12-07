@@ -8,11 +8,16 @@ module.exports = {
 };
 
 function find() {
-  return db("users").select("id", "username").orderBy("id");
+  return db("users as u")
+  .join("roles as r", "u.role, "r.id")
+  .select("u.id", "u.username", "r.name as rolename");
 }
 
 function findBy(filter) {
-  return db("users").where(filter).orderBy("id");
+  return db("users as u")
+  .join("roles as r", "u.department", "r.id")
+  .select("u.id", "u.username", "r.name as departmentname", "u.password")
+  .where(filter).orderBy("u.id");
 }
 
 async function add(user) {
@@ -20,9 +25,7 @@ async function add(user) {
     const [id] = await db("users").insert(user, "id");
 
     return findById(id);
-  } catch (error) {
-    throw error;
-  }
+
 }
 
 function findById(id) {
